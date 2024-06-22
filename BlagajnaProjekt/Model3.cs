@@ -5,23 +5,31 @@ using System.Linq;
 
 namespace BlagajnaProjekt
 {
-    public partial class Model2 : DbContext
+    public partial class Model3 : DbContext
     {
-        public Model2()
-            : base("name=Model2")
+        public Model3()
+            : base("name=Model3")
         {
         }
 
         public virtual DbSet<Playlists> Playlists { get; set; }
+        public virtual DbSet<PlaylistSongs> PlaylistSongs { get; set; }
         public virtual DbSet<Songs> Songs { get; set; }
         public virtual DbSet<Users> Users { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Playlists>()
-                .HasMany(e => e.Songs)
-                .WithMany(e => e.Playlists)
-                .Map(m => m.ToTable("PlaylistSongs").MapLeftKey("PlaylistId").MapRightKey("SongID"));
+                .HasMany(e => e.PlaylistSongs)
+                .WithRequired(e => e.Playlists)
+                .HasForeignKey(e => e.PlaylistId)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Songs>()
+                .HasMany(e => e.PlaylistSongs)
+                .WithRequired(e => e.Songs)
+                .HasForeignKey(e => e.SongId)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Users>()
                 .HasMany(e => e.Playlists)

@@ -12,12 +12,12 @@ namespace BlagajnaProjekt
 {
     public partial class Form2 : Form
     {
-        private Model2 context;
+        private Model3 context;
 
         public Form2()
         {         
             InitializeComponent();
-            context = new Model2();
+            context = new Model3();
         }
 
 

@@ -16,7 +16,7 @@ namespace BlagajnaProjekt
         private WaveOutEvent waveOut;
         private AudioFileReader audioFileReader;
         private Timer timer;
-        private Model2 context;
+        private Model3 context;
         private Songs song;
         private int currentSongIndex;
         private int totalSongs;
@@ -30,7 +30,7 @@ namespace BlagajnaProjekt
             userLabel.Text = user.Username;
 
             // Initialize context and get total number of songs
-            context = new Model2();
+            context = new Model3();
             totalSongs = context.Songs.Count();
             currentSongIndex = 2; // Start with the first song
 

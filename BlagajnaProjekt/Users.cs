@@ -14,15 +14,14 @@ namespace BlagajnaProjekt
             Playlists = new HashSet<Playlists>();
         }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
 
         [Required]
-        [StringLength(50)]
+        [StringLength(100)]
         public string Username { get; set; }
 
         [Required]
-        [StringLength(256)]
+        [StringLength(100)]
         public string PasswordHash { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
