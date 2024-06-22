@@ -16,18 +16,21 @@ namespace BlagajnaProjekt
         private WaveOutEvent waveOut;
         private AudioFileReader audioFileReader;
         private Timer timer;
-        private Model1 context;
+        private Model2 context;
         private Songs song;
         private int currentSongIndex;
         private int totalSongs;
+        private Users currentUser;
 
-        public Form1()
+        public Form1(Users user )
         {
             InitializeComponent();
             waveOut = new WaveOutEvent();
+            currentUser = user;
+            userLabel.Text = user.Username;
 
             // Initialize context and get total number of songs
-            context = new Model1();
+            context = new Model2();
             totalSongs = context.Songs.Count();
             currentSongIndex = 2; // Start with the first song
 
@@ -151,6 +154,11 @@ namespace BlagajnaProjekt
                 LoadAndPlaySong();
                 playButton_Click(sender, e); // Start playing the next song
             }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

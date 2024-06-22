@@ -6,10 +6,10 @@ namespace BlagajnaProjekt
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class Songs
+    public partial class Users
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Songs()
+        public Users()
         {
             Playlists = new HashSet<Playlists>();
         }
@@ -18,16 +18,12 @@ namespace BlagajnaProjekt
         public int Id { get; set; }
 
         [Required]
-        [StringLength(100)]
-        public string Title { get; set; }
+        [StringLength(50)]
+        public string Username { get; set; }
 
         [Required]
-        [StringLength(100)]
-        public string Artist { get; set; }
-
-        [Required]
-        [StringLength(100)]
-        public string FilePath { get; set; }
+        [StringLength(256)]
+        public string PasswordHash { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Playlists> Playlists { get; set; }

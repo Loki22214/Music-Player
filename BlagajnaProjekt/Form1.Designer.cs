@@ -42,6 +42,7 @@ namespace BlagajnaProjekt
             this.displayArtist = new System.Windows.Forms.Label();
             this.previousButton = new System.Windows.Forms.Button();
             this.nextButton = new System.Windows.Forms.Button();
+            this.userLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.volumeTrackBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.progressTrackBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -117,6 +118,7 @@ namespace BlagajnaProjekt
             // 
             // pictureBox1
             // 
+            this.pictureBox1.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.pictureBox1.Location = new System.Drawing.Point(115, 12);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(267, 209);
@@ -152,9 +154,20 @@ namespace BlagajnaProjekt
             this.nextButton.UseVisualStyleBackColor = true;
             this.nextButton.Click += new System.EventHandler(this.nextButton_Click);
             // 
+            // userLabel
+            // 
+            this.userLabel.AutoSize = true;
+            this.userLabel.Location = new System.Drawing.Point(9, 9);
+            this.userLabel.Name = "userLabel";
+            this.userLabel.Size = new System.Drawing.Size(53, 13);
+            this.userLabel.TabIndex = 12;
+            this.userLabel.Text = "userLabel";
+            this.userLabel.Click += new System.EventHandler(this.label1_Click);
+            // 
             // Form1
             // 
             this.ClientSize = new System.Drawing.Size(500, 421);
+            this.Controls.Add(this.userLabel);
             this.Controls.Add(this.nextButton);
             this.Controls.Add(this.previousButton);
             this.Controls.Add(this.displayArtist);
@@ -190,6 +203,7 @@ namespace BlagajnaProjekt
         private System.Windows.Forms.Label displayArtist;
         private System.Windows.Forms.Button previousButton;
         private System.Windows.Forms.Button nextButton;
+        private System.Windows.Forms.Label userLabel;
     }
 }
 
