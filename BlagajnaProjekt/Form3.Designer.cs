@@ -35,6 +35,8 @@ namespace BlagajnaProjekt
             this.deletePlaylistButton = new System.Windows.Forms.Button();
             this.createPlaylistButton = new System.Windows.Forms.Button();
             this.playlistNameTextbox = new System.Windows.Forms.TextBox();
+            this.currentUserLabel = new System.Windows.Forms.Label();
+            this.returnButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // playlistListBox
@@ -90,11 +92,32 @@ namespace BlagajnaProjekt
             this.playlistNameTextbox.Size = new System.Drawing.Size(100, 20);
             this.playlistNameTextbox.TabIndex = 6;
             // 
+            // currentUserLabel
+            // 
+            this.currentUserLabel.AutoSize = true;
+            this.currentUserLabel.Location = new System.Drawing.Point(716, 15);
+            this.currentUserLabel.Name = "currentUserLabel";
+            this.currentUserLabel.Size = new System.Drawing.Size(35, 13);
+            this.currentUserLabel.TabIndex = 7;
+            this.currentUserLabel.Text = "label1";
+            // 
+            // returnButton
+            // 
+            this.returnButton.Location = new System.Drawing.Point(264, 96);
+            this.returnButton.Name = "returnButton";
+            this.returnButton.Size = new System.Drawing.Size(75, 23);
+            this.returnButton.TabIndex = 8;
+            this.returnButton.Text = "<--";
+            this.returnButton.UseVisualStyleBackColor = true;
+            this.returnButton.Click += new System.EventHandler(this.returnButton_Click);
+            // 
             // Form3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.returnButton);
+            this.Controls.Add(this.currentUserLabel);
             this.Controls.Add(this.playlistNameTextbox);
             this.Controls.Add(this.createPlaylistButton);
             this.Controls.Add(this.deletePlaylistButton);
@@ -116,5 +139,7 @@ namespace BlagajnaProjekt
         private System.Windows.Forms.Button deletePlaylistButton;
         private System.Windows.Forms.Button createPlaylistButton;
         private System.Windows.Forms.TextBox playlistNameTextbox;
+        private System.Windows.Forms.Label currentUserLabel;
+        private System.Windows.Forms.Button returnButton;
     }
 }

@@ -1,7 +1,7 @@
 ﻿
 namespace BlagajnaProjekt
 {
-    partial class Form1
+    partial class MediaPlayer
     {
         /// <summary>
         /// Required designer variable.
@@ -43,6 +43,8 @@ namespace BlagajnaProjekt
             this.previousButton = new System.Windows.Forms.Button();
             this.nextButton = new System.Windows.Forms.Button();
             this.userLabel = new System.Windows.Forms.Label();
+            this.logOutButton = new System.Windows.Forms.Button();
+            this.playlistFormButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.volumeTrackBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.progressTrackBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -164,9 +166,31 @@ namespace BlagajnaProjekt
             this.userLabel.Text = "userLabel";
             this.userLabel.Click += new System.EventHandler(this.label1_Click);
             // 
-            // Form1
+            // logOutButton
+            // 
+            this.logOutButton.Location = new System.Drawing.Point(6, 25);
+            this.logOutButton.Name = "logOutButton";
+            this.logOutButton.Size = new System.Drawing.Size(75, 23);
+            this.logOutButton.TabIndex = 13;
+            this.logOutButton.Text = "Log Out";
+            this.logOutButton.UseVisualStyleBackColor = true;
+            this.logOutButton.Click += new System.EventHandler(this.logOutButton_Click);
+            // 
+            // playlistFormButton
+            // 
+            this.playlistFormButton.Location = new System.Drawing.Point(456, 378);
+            this.playlistFormButton.Name = "playlistFormButton";
+            this.playlistFormButton.Size = new System.Drawing.Size(25, 23);
+            this.playlistFormButton.TabIndex = 14;
+            this.playlistFormButton.Text = "-";
+            this.playlistFormButton.UseVisualStyleBackColor = true;
+            this.playlistFormButton.Click += new System.EventHandler(this.playlistFormButton_Click);
+            // 
+            // MediaPlayer
             // 
             this.ClientSize = new System.Drawing.Size(500, 421);
+            this.Controls.Add(this.playlistFormButton);
+            this.Controls.Add(this.logOutButton);
             this.Controls.Add(this.userLabel);
             this.Controls.Add(this.nextButton);
             this.Controls.Add(this.previousButton);
@@ -179,7 +203,7 @@ namespace BlagajnaProjekt
             this.Controls.Add(this.volumeLabel);
             this.Controls.Add(this.pauseButton);
             this.Controls.Add(this.playButton);
-            this.Name = "Form1";
+            this.Name = "MediaPlayer";
             ((System.ComponentModel.ISupportInitialize)(this.volumeTrackBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.progressTrackBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -204,6 +228,8 @@ namespace BlagajnaProjekt
         private System.Windows.Forms.Button previousButton;
         private System.Windows.Forms.Button nextButton;
         private System.Windows.Forms.Label userLabel;
+        private System.Windows.Forms.Button logOutButton;
+        private System.Windows.Forms.Button playlistFormButton;
     }
 }
 

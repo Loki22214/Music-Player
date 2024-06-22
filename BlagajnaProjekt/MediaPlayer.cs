@@ -11,7 +11,7 @@ using NAudio.Wave;
 
 namespace BlagajnaProjekt
 {
-    public partial class Form1 : Form
+    public partial class MediaPlayer : Form
     {
         private WaveOutEvent waveOut;
         private AudioFileReader audioFileReader;
@@ -22,7 +22,7 @@ namespace BlagajnaProjekt
         private int totalSongs;
         private Users currentUser;
 
-        public Form1(Users user )
+        public MediaPlayer(Users user )
         {
             InitializeComponent();
             waveOut = new WaveOutEvent();
@@ -159,6 +159,20 @@ namespace BlagajnaProjekt
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void logOutButton_Click(object sender, EventArgs e)
+        {
+            LoginForm mainForm = new LoginForm();
+            mainForm.Show();
+            this.Close(); 
+        }
+
+        private void playlistFormButton_Click(object sender, EventArgs e)
+        {
+            Form3 mainForm = new Form3(currentUser);
+            mainForm.Show();
+            this.Hide(); 
         }
     }
 }

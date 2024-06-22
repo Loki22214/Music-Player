@@ -13,11 +13,15 @@ namespace BlagajnaProjekt
     public partial class Form3 : Form
     {
         private Model3 context;
-        public Form3()
+        private Users currentUser;
+        public Form3(Users user)
         {
             InitializeComponent();
             context = new Model3();
-            
+            currentUser = user;
+            currentUserLabel.Text = user.Username;
+            LoadSongs();
+            RefreshPlaylistList();
         }
         
         
@@ -28,9 +32,31 @@ namespace BlagajnaProjekt
         private void RefreshPlaylistList()
         {
             playlistListBox.Items.Clear();
+            var playlists = context.Playlists.Where(p => p.UserId == currentUser.Id).ToList();
             foreach (var playlist in context.Playlists.ToList())
             {
                 playlistListBox.Items.Add(playlist);
+            }
+        }
+        private void RefreshSongList(Playlists playlist)
+        {
+            songListBox.Items.Clear();
+            var songs = context.PlaylistSongs
+                               .Where(ps => ps.PlaylistId == playlist.Id)
+                               .Select(ps => ps.Songs)
+                               .ToList();
+            foreach (var song in songs)
+            {
+                songListBox.Items.Add(song);
+            }
+        }
+
+        private void playlistListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (playlistListBox.SelectedItem != null)
+            {
+                var selectedPlaylist = (Playlists)playlistListBox.SelectedItem;
+                RefreshSongList(selectedPlaylist);
             }
         }
         private void addSongButton_Click(object sender, EventArgs e)
@@ -89,7 +115,8 @@ namespace BlagajnaProjekt
 
             var newPlaylist = new Playlists
             {
-                Name = playlistName
+                Name = playlistName,
+                UserId = currentUser.Id // Ensure the UserId is correctly assigned
             };
 
             context.Playlists.Add(newPlaylist);
@@ -107,9 +134,25 @@ namespace BlagajnaProjekt
             }
         }
 
-        private void PlaylistForm_Shown(object sender, EventArgs e)
+        private void songListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (songListBox.SelectedItem != null)
+            {
+                var selectedSong = (Songs)songListBox.SelectedItem;
+                MessageBox.Show($"Selected Song: {selectedSong.Title}");
+            }
+        }
+
+        private void returnButton_Click(object sender, EventArgs e)
+        {
+            MediaPlayer mainForm = new MediaPlayer(currentUser);
+            mainForm.Show();
+            this.Hide(); // Optionally hide the login form
+        }
+
+        /*private void PlaylistForm_Shown(object sender, EventArgs e)
         {
             LoadSongs();
-        }
+        }*/
     }
 }

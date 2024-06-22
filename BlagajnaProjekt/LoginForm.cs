@@ -10,11 +10,11 @@ using System.Windows.Forms;
 
 namespace BlagajnaProjekt
 {
-    public partial class Form2 : Form
+    public partial class LoginForm : Form
     {
         private Model3 context;
 
-        public Form2()
+        public LoginForm()
         {         
             InitializeComponent();
             context = new Model3();
@@ -27,28 +27,29 @@ namespace BlagajnaProjekt
             string username = usernameTextBox.Text;
             string password = passwordTextBox.Text;
             string hashedPassword = HashPassword(password); // Implement this method to hash the password
-
+            bool validUser = false;
 
             List<Users> users = context.Users.ToList();
 
             foreach (Users user in users)
             {
+                
                 if (username == user.Username && password == user.PasswordHash)
                 {
                     MessageBox.Show("Login successful!");
                     // Pass the user information to the main form
-                    var mainForm = new Form1(user);
+                    var mainForm = new Form3(user);
                     mainForm.Show();
+                    validUser = true;
                     this.Hide();
                     break;
-                }
-                else
-                {
-                    MessageBox.Show("Invalid username or password.");
-                }
+                }               
             }
 
-           
+            if (!validUser)
+            {
+                MessageBox.Show("Invalid username or password.");
+            }
         }
 
         private string HashPassword(string password)
