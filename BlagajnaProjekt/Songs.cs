@@ -13,6 +13,10 @@ namespace BlagajnaProjekt
         {
             PlaylistSongs = new HashSet<PlaylistSongs>();
         }
+        public override string ToString()
+        {
+            return $"{Artist} - {Title}";
+        }
 
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }

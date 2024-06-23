@@ -14,6 +14,11 @@ namespace BlagajnaProjekt
             PlaylistSongs = new HashSet<PlaylistSongs>();
         }
 
+        public override string ToString()
+        {
+            return Name;
+        }
+
         public int Id { get; set; }
 
         [Required]

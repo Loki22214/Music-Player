@@ -14,6 +14,7 @@ namespace BlagajnaProjekt
     {
         private Model3 context;
         private Users currentUser;
+    
         public Form3(Users user)
         {
             InitializeComponent();
@@ -139,7 +140,7 @@ namespace BlagajnaProjekt
             if (songListBox.SelectedItem != null)
             {
                 var selectedSong = (Songs)songListBox.SelectedItem;
-                MessageBox.Show($"Selected Song: {selectedSong.Title}");
+                MessageBox.Show($"Selected Song: {selectedSong.Artist} - {selectedSong.Title}");
             }
         }
 
@@ -148,6 +149,29 @@ namespace BlagajnaProjekt
             MediaPlayer mainForm = new MediaPlayer(currentUser);
             mainForm.Show();
             this.Hide(); // Optionally hide the login form
+        }
+
+        private void loadSongFromPlaylistButton_Click(object sender, EventArgs e)
+        {
+            if (playlistListBox.SelectedItem != null)
+            {
+                var selectedPlaylist = (Playlists)playlistListBox.SelectedItem;
+                RefreshSongList(selectedPlaylist);
+            }
+            else
+            {
+                MessageBox.Show("Please select a playlist.");
+            }
+        }
+
+        private void loadAllSongs_Click(object sender, EventArgs e)
+        {
+            LoadSongs();
+        }
+
+        private void playSongButton_Click(object sender, EventArgs e)
+        {
+
         }
 
         /*private void PlaylistForm_Shown(object sender, EventArgs e)

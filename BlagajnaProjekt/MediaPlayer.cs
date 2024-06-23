@@ -42,7 +42,7 @@ namespace BlagajnaProjekt
             timer.Tick += timer1_Tick;
         }
 
-        private void LoadAndPlaySong()
+        public void LoadAndPlaySong()
         {
             var song = context.Songs.OrderBy(s => s.Id).Skip(currentSongIndex).FirstOrDefault();
 
