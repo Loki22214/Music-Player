@@ -38,7 +38,7 @@ namespace BlagajnaProjekt
                 {
                     MessageBox.Show("Login successful!");
                     // Pass the user information to the main form
-                    var mainForm = new Form3(user);
+                    var mainForm = new PlaylistManager(user);
                     mainForm.Show();
                     validUser = true;
                     this.Hide();

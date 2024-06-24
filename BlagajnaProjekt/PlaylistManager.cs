@@ -10,42 +10,44 @@ using System.Windows.Forms;
 
 namespace BlagajnaProjekt
 {
-    public partial class Form3 : Form
+    public partial class PlaylistManager : Form
     {
         private Model3 context;
         private Users currentUser;
+        private MediaPlayer mediaPlayer;
     
-        public Form3(Users user)
+        public PlaylistManager(Users user)
         {
             InitializeComponent();
-            context = new Model3();
+            context = new Model3();          
             currentUser = user;
+            mediaPlayer = new MediaPlayer(currentUser);
             currentUserLabel.Text = user.Username;
             LoadSongs();
             RefreshPlaylistList();
         }
         
         
-        private void PlaylistForm_Load(object sender, EventArgs e)
+        private async void PlaylistForm_Load(object sender, EventArgs e)
         {
-            RefreshPlaylistList();
+            await RefreshPlaylistList();
         }
-        private void RefreshPlaylistList()
+        private async Task RefreshPlaylistList()
         {
             playlistListBox.Items.Clear();
-            var playlists = context.Playlists.Where(p => p.UserId == currentUser.Id).ToList();
-            foreach (var playlist in context.Playlists.ToList())
+            var playlists = await Task.Run(() => context.Playlists.Where(p => p.UserId == currentUser.Id).ToList());
+            foreach (var playlist in playlists)
             {
                 playlistListBox.Items.Add(playlist);
             }
         }
-        private void RefreshSongList(Playlists playlist)
+        private async void RefreshSongList(Playlists playlist)
         {
             songListBox.Items.Clear();
-            var songs = context.PlaylistSongs
-                               .Where(ps => ps.PlaylistId == playlist.Id)
-                               .Select(ps => ps.Songs)
-                               .ToList();
+            var songs = await Task.Run(() => context.PlaylistSongs
+                                                    .Where(ps => ps.PlaylistId == playlist.Id)
+                                                    .Select(ps => ps.Songs)
+                                                    .ToList());
             foreach (var song in songs)
             {
                 songListBox.Items.Add(song);
@@ -171,7 +173,10 @@ namespace BlagajnaProjekt
 
         private void playSongButton_Click(object sender, EventArgs e)
         {
-
+            mediaPlayer.Show();
+            this.Hide(); // Optionally hide the login form
+            var selectedSong = (Songs)songListBox.SelectedItem;
+            mediaPlayer.playSong(selectedSong);
         }
 
         /*private void PlaylistForm_Shown(object sender, EventArgs e)

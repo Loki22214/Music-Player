@@ -38,7 +38,6 @@ namespace BlagajnaProjekt
             this.currentTimeLabel = new System.Windows.Forms.Label();
             this.totalTimeLabel = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.displayArtist = new System.Windows.Forms.Label();
             this.previousButton = new System.Windows.Forms.Button();
             this.nextButton = new System.Windows.Forms.Button();
@@ -47,7 +46,6 @@ namespace BlagajnaProjekt
             this.playlistFormButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.volumeTrackBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.progressTrackBar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // playButton
@@ -118,19 +116,10 @@ namespace BlagajnaProjekt
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.pictureBox1.Location = new System.Drawing.Point(115, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(267, 209);
-            this.pictureBox1.TabIndex = 8;
-            this.pictureBox1.TabStop = false;
-            // 
             // displayArtist
             // 
             this.displayArtist.AutoSize = true;
-            this.displayArtist.Location = new System.Drawing.Point(112, 224);
+            this.displayArtist.Location = new System.Drawing.Point(224, 158);
             this.displayArtist.Name = "displayArtist";
             this.displayArtist.Size = new System.Drawing.Size(35, 13);
             this.displayArtist.TabIndex = 9;
@@ -195,7 +184,6 @@ namespace BlagajnaProjekt
             this.Controls.Add(this.nextButton);
             this.Controls.Add(this.previousButton);
             this.Controls.Add(this.displayArtist);
-            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.totalTimeLabel);
             this.Controls.Add(this.currentTimeLabel);
             this.Controls.Add(this.progressTrackBar);
@@ -206,7 +194,6 @@ namespace BlagajnaProjekt
             this.Name = "MediaPlayer";
             ((System.ComponentModel.ISupportInitialize)(this.volumeTrackBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.progressTrackBar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -223,7 +210,6 @@ namespace BlagajnaProjekt
         private System.Windows.Forms.Label currentTimeLabel;
         private System.Windows.Forms.Label totalTimeLabel;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label displayArtist;
         private System.Windows.Forms.Button previousButton;
         private System.Windows.Forms.Button nextButton;

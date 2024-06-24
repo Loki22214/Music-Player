@@ -42,7 +42,51 @@ namespace BlagajnaProjekt
             timer.Tick += timer1_Tick;
         }
 
-        public void LoadAndPlaySong()
+        public void playSong(Songs song)
+        {
+            if (song != null)
+            {
+                if (waveOut != null && waveOut.PlaybackState == PlaybackState.Playing)
+                {
+                    waveOut.Stop();
+                }
+
+                if (audioFileReader != null)
+                {
+                    audioFileReader.Dispose();
+                }
+
+                // Store the file path in a variable
+                string filePath = song.FilePath;
+
+                // Use the file path variable with the AudioFileReader
+                audioFileReader = new AudioFileReader(@filePath);
+
+                // Initialize waveOut with the audioFileReader
+                waveOut.Init(audioFileReader);
+
+                // Set the initial volume
+                waveOut.Volume = volumeTrackBar.Value / 100f;
+
+                // Set the volume label text
+                volumeLabel.Text = $"Volume: {volumeTrackBar.Value}%";
+
+                // Set up the progress track bar
+                progressTrackBar.Minimum = 0;
+                progressTrackBar.Maximum = (int)audioFileReader.TotalTime.TotalSeconds;
+
+                // Set the total time label
+                totalTimeLabel.Text = TimeSpan.FromSeconds(progressTrackBar.Maximum).ToString(@"mm\:ss");
+
+                // Display the artist information
+                displayArtist.Text = $"{song.Artist} - {song.Title}";
+            }
+            else
+            {
+                MessageBox.Show("No song found in the database.");
+            }
+        }
+        private void LoadAndPlaySong()
         {
             var song = context.Songs.OrderBy(s => s.Id).Skip(currentSongIndex).FirstOrDefault();
 
@@ -170,7 +214,7 @@ namespace BlagajnaProjekt
 
         private void playlistFormButton_Click(object sender, EventArgs e)
         {
-            Form3 mainForm = new Form3(currentUser);
+            PlaylistManager mainForm = new PlaylistManager(currentUser);
             mainForm.Show();
             this.Hide(); 
         }

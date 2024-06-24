@@ -1,7 +1,7 @@
 ﻿
 namespace BlagajnaProjekt
 {
-    partial class Form3
+    partial class PlaylistManager
     {
         /// <summary>
         /// Required designer variable.
