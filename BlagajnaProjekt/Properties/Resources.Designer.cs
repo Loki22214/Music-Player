@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BlagajnaProjekt.Properties {
+namespace MusicPlayer.Properties {
     using System;
     
     

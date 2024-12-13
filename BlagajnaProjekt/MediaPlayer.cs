@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using NAudio.Wave;
 
-namespace BlagajnaProjekt
+namespace MusicPlayer
 {
     public partial class MediaPlayer : Form
     {
@@ -29,16 +29,16 @@ namespace BlagajnaProjekt
             currentUser = user;
             userLabel.Text = user.Username;
 
-            // Initialize context and get total number of songs
+            // inicijalizacija konteksta 
             context = new Model3();
             totalSongs = context.Songs.Count();
-            currentSongIndex = 2; // Start with the first song
+            currentSongIndex = 2; 
 
             LoadAndPlaySong();
 
-            // Set up the timer
+            // konfiguracija timera
             timer = new Timer();
-            timer.Interval = 1000; // 1 second
+            timer.Interval = 1000; // 1 sekunda
             timer.Tick += timer1_Tick;
         }
 
@@ -56,29 +56,29 @@ namespace BlagajnaProjekt
                     audioFileReader.Dispose();
                 }
 
-                // Store the file path in a variable
+                // konfiguracija filepatha
                 string filePath = song.FilePath;
 
-                // Use the file path variable with the AudioFileReader
+                
                 audioFileReader = new AudioFileReader(@filePath);
 
-                // Initialize waveOut with the audioFileReader
+               
                 waveOut.Init(audioFileReader);
 
-                // Set the initial volume
+                // konfiguracija pojacavanje i smanjivanje zvuka
                 waveOut.Volume = volumeTrackBar.Value / 100f;
 
-                // Set the volume label text
+                
                 volumeLabel.Text = $"Volume: {volumeTrackBar.Value}%";
 
-                // Set up the progress track bar
+                // konfiguracija trake za premotavanje glazbe
                 progressTrackBar.Minimum = 0;
                 progressTrackBar.Maximum = (int)audioFileReader.TotalTime.TotalSeconds;
 
-                // Set the total time label
+                
                 totalTimeLabel.Text = TimeSpan.FromSeconds(progressTrackBar.Maximum).ToString(@"mm\:ss");
 
-                // Display the artist information
+                
                 displayArtist.Text = $"{song.Artist} - {song.Title}";
             }
             else
@@ -102,29 +102,28 @@ namespace BlagajnaProjekt
                     audioFileReader.Dispose();
                 }
 
-                // Store the file path in a variable
                 string filePath = song.FilePath;
 
-                // Use the file path variable with the AudioFileReader
+                
                 audioFileReader = new AudioFileReader(@filePath);
 
-                // Initialize waveOut with the audioFileReader
+                
                 waveOut.Init(audioFileReader);
 
-                // Set the initial volume
+                
                 waveOut.Volume = volumeTrackBar.Value / 100f;
 
-                // Set the volume label text
+                
                 volumeLabel.Text = $"Volume: {volumeTrackBar.Value}%";
 
-                // Set up the progress track bar
+                
                 progressTrackBar.Minimum = 0;
                 progressTrackBar.Maximum = (int)audioFileReader.TotalTime.TotalSeconds;
 
-                // Set the total time label
+                
                 totalTimeLabel.Text = TimeSpan.FromSeconds(progressTrackBar.Maximum).ToString(@"mm\:ss");
 
-                // Display the artist information
+                
                 displayArtist.Text = $"{song.Artist} - {song.Title}";
             }
             else
@@ -186,7 +185,7 @@ namespace BlagajnaProjekt
             {
                 currentSongIndex--;
                 LoadAndPlaySong();
-                playButton_Click(sender, e); // Start playing the previous song
+                playButton_Click(sender, e); 
             }
         }
 
@@ -196,7 +195,7 @@ namespace BlagajnaProjekt
             {
                 currentSongIndex++;
                 LoadAndPlaySong();
-                playButton_Click(sender, e); // Start playing the next song
+                playButton_Click(sender, e); 
             }
         }
 

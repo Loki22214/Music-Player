@@ -1,5 +1,5 @@
 ﻿
-namespace BlagajnaProjekt
+namespace MusicPlayer
 {
     partial class LoginForm
     {

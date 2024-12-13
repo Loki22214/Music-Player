@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Linq;
 
-namespace BlagajnaProjekt
+namespace MusicPlayer
 {
     public partial class Model3 : DbContext
     {

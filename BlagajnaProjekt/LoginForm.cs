@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace BlagajnaProjekt
+namespace MusicPlayer
 {
     public partial class LoginForm : Form
     {
@@ -26,7 +26,7 @@ namespace BlagajnaProjekt
         {
             string username = usernameTextBox.Text;
             string password = passwordTextBox.Text;
-            string hashedPassword = HashPassword(password); // Implement this method to hash the password
+            string hashedPassword = HashPassword(password);
             bool validUser = false;
 
             List<Users> users = context.Users.ToList();
@@ -37,7 +37,7 @@ namespace BlagajnaProjekt
                 if (username == user.Username && password == user.PasswordHash)
                 {
                     MessageBox.Show("Login successful!");
-                    // Pass the user information to the main form
+                    // Slanje informacije u useru drugim formama
                     var mainForm = new PlaylistManager(user);
                     mainForm.Show();
                     validUser = true;
@@ -54,8 +54,7 @@ namespace BlagajnaProjekt
 
         private string HashPassword(string password)
         {
-            // Use a hashing library like BCrypt, SHA256, etc.
-            return Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(password)); // Simplified example
+            return Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(password)); 
         }
 
         private void signUpButton_Click(object sender, EventArgs e)
@@ -74,8 +73,7 @@ namespace BlagajnaProjekt
                 MessageBox.Show("Username already exists. Please choose a different username.");
                 return;
             }
-
-       
+ 
 
             Users newUser = new Users
             {

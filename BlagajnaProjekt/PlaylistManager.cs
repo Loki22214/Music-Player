@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace BlagajnaProjekt
+namespace MusicPlayer
 {
     public partial class PlaylistManager : Form
     {
@@ -73,14 +73,14 @@ namespace BlagajnaProjekt
             var selectedPlaylist = (Playlists)playlistListBox.SelectedItem;
             var selectedSong = (Songs)songListBox.SelectedItem;
 
-            // Check if the song is already in the playlist
+            // Provjera da li je pjesma vec u playlisti
             if (selectedPlaylist.PlaylistSongs.Any(ps => ps.SongId == selectedSong.Id))
             {
                 MessageBox.Show("The song is already in the playlist.");
                 return;
             }
 
-            // Add song to playlist
+            // Unesi pjesmu u playlistu
             var playlistSong = new PlaylistSongs
             {
                 PlaylistId = selectedPlaylist.Id,
@@ -119,7 +119,7 @@ namespace BlagajnaProjekt
             var newPlaylist = new Playlists
             {
                 Name = playlistName,
-                UserId = currentUser.Id // Ensure the UserId is correctly assigned
+                UserId = currentUser.Id 
             };
 
             context.Playlists.Add(newPlaylist);
@@ -127,7 +127,7 @@ namespace BlagajnaProjekt
 
             RefreshPlaylistList();
         }
-        // Load songs into the songListBox
+        // Loada sve pjesme u listbox
         private void LoadSongs()
         {
             songListBox.Items.Clear();
@@ -150,7 +150,7 @@ namespace BlagajnaProjekt
         {
             MediaPlayer mainForm = new MediaPlayer(currentUser);
             mainForm.Show();
-            this.Hide(); // Optionally hide the login form
+            this.Hide();
         }
 
         private void loadSongFromPlaylistButton_Click(object sender, EventArgs e)
@@ -174,9 +174,58 @@ namespace BlagajnaProjekt
         private void playSongButton_Click(object sender, EventArgs e)
         {
             mediaPlayer.Show();
-            this.Hide(); // Optionally hide the login form
+            this.Hide(); 
             var selectedSong = (Songs)songListBox.SelectedItem;
             mediaPlayer.playSong(selectedSong);
+        }
+
+        private void createSongButton_Click(object sender, EventArgs e)
+        {
+            string songName = songNameTextBox.Text.Trim();
+            string artistName = artistTextBox.Text.Trim();
+            string filePath = filePathTextBox.Text.Trim();
+
+            if (string.IsNullOrEmpty(songName) || string.IsNullOrEmpty(artistName) || string.IsNullOrEmpty(filePath))
+            {
+                MessageBox.Show("Please fill in all fields and select a file.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                var newSong = new Songs
+                {
+                    Title = songName,
+                    Artist = artistName,
+                    FilePath = filePath
+                };
+
+                context.Songs.Add(newSong);
+                context.SaveChanges();
+
+                MessageBox.Show("Song added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+             
+                songNameTextBox.Clear();
+                artistTextBox.Clear();
+                filePathTextBox.Clear();
+
+                LoadSongs();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error adding the song: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void loadSongButton_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Audio Files|*.mp3;*.wav;*.aac|All Files|*.*";
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                filePathTextBox.Text = openFileDialog.FileName;
+            }
         }
 
         /*private void PlaylistForm_Shown(object sender, EventArgs e)

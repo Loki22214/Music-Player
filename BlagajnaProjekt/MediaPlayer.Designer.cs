@@ -1,5 +1,5 @@
 ﻿
-namespace BlagajnaProjekt
+namespace MusicPlayer
 {
     partial class MediaPlayer
     {
@@ -119,7 +119,7 @@ namespace BlagajnaProjekt
             // displayArtist
             // 
             this.displayArtist.AutoSize = true;
-            this.displayArtist.Location = new System.Drawing.Point(224, 158);
+            this.displayArtist.Location = new System.Drawing.Point(220, 166);
             this.displayArtist.Name = "displayArtist";
             this.displayArtist.Size = new System.Drawing.Size(35, 13);
             this.displayArtist.TabIndex = 9;

@@ -1,4 +1,4 @@
-namespace BlagajnaProjekt
+namespace MusicPlayer
 {
     using System;
     using System.Collections.Generic;
