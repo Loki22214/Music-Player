@@ -14,12 +14,6 @@ A Windows Forms application built with .NET Framework that serves as a music pla
 
 ---
 
-## How To Use
-
-
-
----
-
 ## Installation
 
 ### Prerequisites
